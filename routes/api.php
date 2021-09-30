@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -32,3 +33,10 @@ Route::get('packages/{package}', [PackageController::class, 'read']);
 Route::post('packages', [PackageController::class, 'create']);
 Route::put('packages/{package}', [PackageController::class, 'update']);
 Route::delete('packages/{package}', [PackageController::class, 'delete']);
+
+
+Route::get('orders', [OrderController::class, 'index']);
+Route::get('orders/{order}', [OrderController::class, 'read']);
+Route::post('orders', [OrderController::class, 'create']);
+Route::put('orders/{order}', [OrderController::class, 'update']);
+Route::delete('orders/{order}', [OrderController::class, 'delete']);

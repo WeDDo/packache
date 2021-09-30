@@ -13,11 +13,21 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
+            //$table->unsignedBigInteger('package_id')->nullable();
         });
+/*
+        Schema::table('items', function(Blueprint $table){
+            $table->foreign('package_id')
+            ->references('id')->on('packages')
+            ->onDelete('cascade');
+        });
+*/
     }
 
     /**
