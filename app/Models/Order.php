@@ -32,7 +32,7 @@ class Order extends Model
      * @var array
      */
     protected $hidden = [
-        'id',
+
     ];
 
     public function packages(){
