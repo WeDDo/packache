@@ -28,15 +28,14 @@ Route::post('items', [ItemController::class, 'create']);
 Route::put('items/{item}', [ItemController::class, 'update']);
 Route::delete('items/{item}', [ItemController::class, 'delete']);
 
-Route::get('packages', [PackageController::class, 'index']);
-Route::get('packages/{package}', [PackageController::class, 'read']);
-Route::post('packages', [PackageController::class, 'create']);
-Route::put('packages/{package}', [PackageController::class, 'update']);
-Route::delete('packages/{package}', [PackageController::class, 'delete']);
-
+Route::get('orders/{order}/packages', [PackageController::class, 'index']);
+Route::get('orders/{order}/packages/{package}', [PackageController::class, 'read']);
+Route::post('orders/{order}/packages', [PackageController::class, 'create']);
+Route::put('orders/{order}/packages/{package}', [PackageController::class, 'update']);
+Route::delete('orders/{order}/packages/{package}', [PackageController::class, 'delete']);
 
 Route::get('orders', [OrderController::class, 'index']);
-Route::get('orders/{order}', [OrderController::class, 'read']);
+Route::get('orders/{order}/', [OrderController::class, 'read']);
 Route::post('orders', [OrderController::class, 'create']);
-Route::put('orders/{order}', [OrderController::class, 'update']);
-Route::delete('orders/{order}', [OrderController::class, 'delete']);
+Route::put('orders/{order}/', [OrderController::class, 'update']);
+Route::delete('orders/{order}/', [OrderController::class, 'delete']);
