@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();

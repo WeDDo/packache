@@ -22,8 +22,8 @@ class ItemTest extends TestCase
 
     public function testItemReadRequest()
     {
-        $itemTestId = 1;
-        $response = $this->get('/api/items/'.$itemTestId);
+        $itemId = 5;
+        $response = $this->get('/api/items/'.$itemId);
 
         $response->assertStatus(200);
     }
@@ -35,36 +35,36 @@ class ItemTest extends TestCase
      */
     public function testItemPostRequest()
     {
-        $itemTestName = 'Tennis ball';
+        $itemName = 'Tennis ball';
 
-        $response = $this->postJson('/api/items', ['name' => $itemTestName]);
+        $response = $this->postJson('/api/items', ['name' => $itemName]);
 
         $response
             ->assertStatus(201)
             ->assertJson([
-                'name' => $itemTestName,
+                'name' => $itemName,
             ]);
     }
 
     public function testItemUpdateRequest()
     {
-        $itemTestName = 'Cricket ball';
-        $itemTestId = 1;
+        $itemName = 'Pencil';
+        $itemId = 6;
 
-        $response = $this->putJson('/api/items/'.$itemTestId, ['name' => $itemTestName]);
+        $response = $this->putJson('/api/items/'.$itemId, ['name' => $itemName]);
 
         $response
             ->assertStatus(200)
             ->assertJson([
-                'name' => $itemTestName,
+                'name' => $itemName,
             ]);
     }
 
     public function testItemDeleteRequest()
     {
-        $itemTestId = 3;
+        $itemId = 7;
 
-        $response = $this->deleteJson('/api/items/'.$itemTestId);
+        $response = $this->deleteJson('/api/items/'.$itemId);
 
         $response->assertStatus(204);
     }
