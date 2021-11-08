@@ -17,6 +17,7 @@ class CreatePackagesTable extends Migration
 
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantity_done')->unsigned()->default(0);
             $table->integer('quantity')->unsigned();
             $table->timestamps();
             $table->unsignedBigInteger('item_id')->nullable();

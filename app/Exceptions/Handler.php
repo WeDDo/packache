@@ -4,7 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Exception\JsonException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -69,6 +71,13 @@ class Handler extends ExceptionHandler
                 'error' => 'Method not allowed'
             ], 400);
         }
+
+        if($exception instanceof QueryException){
+            return response()->json([
+                'error' => 'Database not found'
+            ], 404);
+        }
+
 
         return parent::render($request, $exception);
     }

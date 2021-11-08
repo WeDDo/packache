@@ -27,7 +27,7 @@ class AuthTest extends TestCase
     public function test_user_can_register()
     {
         $user = User::factory()->make([
-            'email' => $email = 'testUser1@gmail.com',
+            'email' => $email = 'testUser5@gmail.com',
             'password' => bcrypt($password = 'i-love-laravel'),
         ]);
 

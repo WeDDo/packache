@@ -22,7 +22,7 @@ class ItemTest extends TestCase
 
     public function testItemReadRequest()
     {
-        $itemId = 5;
+        $itemId = 1;
         $response = $this->get('/api/items/'.$itemId);
 
         $response->assertStatus(200);
@@ -49,7 +49,7 @@ class ItemTest extends TestCase
     public function testItemUpdateRequest()
     {
         $itemName = 'Pencil';
-        $itemId = 6;
+        $itemId = 2;
 
         $response = $this->putJson('/api/items/'.$itemId, ['name' => $itemName]);
 
@@ -62,7 +62,7 @@ class ItemTest extends TestCase
 
     public function testItemDeleteRequest()
     {
-        $itemId = 7;
+        $itemId = 10;
 
         $response = $this->deleteJson('/api/items/'.$itemId);
 

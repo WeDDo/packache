@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
-    public function testItemIndexRequest()
+    public function testOrderIndexRequest()
     {
         $response = $this->get('/api/orders');
 
@@ -17,7 +17,7 @@ class OrderTest extends TestCase
 
     public function testOrderReadRequest()
     {
-        $orderId = 5;
+        $orderId = 1;
         $response = $this->get('/api/orders/'.$orderId);
 
         $response->assertStatus(200);
@@ -38,7 +38,7 @@ class OrderTest extends TestCase
 
     public function testOrderUpdateRequest()
     {
-        $orderRecipient = 'Iki';
+        $orderRecipient = 'Majai';
         $orderId = 5;
 
         $response = $this->putJson('/api/orders/'.$orderId, ['recipient' => $orderRecipient]);
@@ -52,7 +52,7 @@ class OrderTest extends TestCase
 
     public function testOrderDeleteRequest()
     {
-        $orderId = 7;
+        $orderId = 10;
 
         $response = $this->deleteJson('/api/orders/'.$orderId);
 

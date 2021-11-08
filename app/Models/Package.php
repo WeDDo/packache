@@ -24,6 +24,7 @@ class Package extends Model
      */
     protected $fillable = [
         'quantity',
+        'quantity_done',
         'item_id',
         'order_id'
     ];
