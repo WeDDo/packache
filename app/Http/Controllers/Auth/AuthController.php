@@ -45,20 +45,30 @@ class AuthController extends Controller
             'username' => 'required|string',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
+            'email' => 'required|string|email',
             'password' => 'required|string'
         ]);
-        $user = new User;
-        $user->username = $request->username;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
 
-        return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
+        $userCheck = User::where('email', $request->email)
+        ->first();
+
+        if($userCheck == null){
+            $user = new User;
+            $user->username = $request->username;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return response()->json([
+                'message' => 'Successfully created user!'
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'message' => 'User already exists'
+            ], 409);
+        }
    }
 
     public function logout(Request $request)
