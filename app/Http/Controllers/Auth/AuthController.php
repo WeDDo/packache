@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string'
@@ -32,6 +33,7 @@ class AuthController extends Controller
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,
+            'user' => $user,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
@@ -54,11 +56,11 @@ class AuthController extends Controller
 
         if($userCheck == null){
             $user = new User;
-            $user->username = $request->username;
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
+            $user->username = strval($request->username);
+            $user->first_name = strval($request->first_name);
+            $user->last_name = strval($request->last_name);
+            $user->email = strval($request->email);
+            $user->password = bcrypt(strval($request->password));
             $user->save();
             return response()->json([
                 'message' => 'Successfully created user!'
@@ -71,14 +73,6 @@ class AuthController extends Controller
         }
    }
 
-   /*
-    public function logout(Request $request)
-    {
-        $request->user()->token()->revoke();
-        return response()->json([
-            'message' => 'Successfully logged out']);
-    }
-    */
     public function user(Request $request)
     {
         return response()->json($request->user());

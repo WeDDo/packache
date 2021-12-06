@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Package;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Item extends Model
 {
@@ -28,7 +29,7 @@ class Item extends Model
 
     ];
 
-    public function packages(){
+    public function packages(): HasMany{
         return $this->hasMany(Package::class);
     }
 }

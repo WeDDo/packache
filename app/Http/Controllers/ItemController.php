@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,7 @@ class ItemController extends Controller
         if(Auth::user()->role == 'admin' || Auth::user()->role == 'employee'){
             return Item::all();
         }
+        return response()->json(['message' => 'user not authorized for this action!'], 401);
     }
 
     public function read(Item $item){

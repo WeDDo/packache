@@ -78,6 +78,11 @@ class Handler extends ExceptionHandler
             ], 404);
         }
 
+        if($exception instanceof RuntimeException){
+            return response()->json([
+                'error' => 'Runtime error'
+            ], 404);
+        }
 
         return parent::render($request, $exception);
     }

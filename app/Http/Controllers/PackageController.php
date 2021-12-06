@@ -64,7 +64,7 @@ class PackageController extends Controller
     }
 
     //Gets package from a specific order
-    public static function getPackage(Order $order, Package $package){
+    public static function getPackage(Order $order, Package $package): Package{
         return Package::where("order_id", $order->id)
         ->where("id", $package->id)
         ->firstOrFail();

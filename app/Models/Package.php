@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Package extends Model
 {
@@ -39,11 +40,11 @@ class Package extends Model
         'item_id'
     ];
 
-    public function item(){
+    public function item(): BelongsTo{
         return $this->belongsTo(Item::class);
     }
 
-    public function order(){
+    public function order(): BelongsTo{
         return $this->belongsTo(Order::class);
     }
 }
